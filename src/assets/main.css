@@ -1,0 +1,187 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   STYLES GLOBAUX — Application Japon
+   ===================================================== */
+
+/* Styles de base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-japon-blanc text-japon-noir font-sans;
+    overflow-x: hidden;
+  }
+
+  /* Titres avec police japonaise */
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+
+  /* Barre de défilement personnalisée */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-japon-blanc;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-japon-rouge rounded-full;
+  }
+}
+
+/* =====================================================
+   COMPOSANTS RÉUTILISABLES
+   ===================================================== */
+@layer components {
+  /* Bouton principal rouge japonais */
+  .btn-japon {
+    @apply px-6 py-3 bg-japon-rouge text-white font-sans font-medium
+           rounded-sm hover:bg-opacity-90 transition-all duration-200
+           shadow-md hover:shadow-lg active:scale-95;
+  }
+
+  /* Bouton secondaire doré */
+  .btn-dore {
+    @apply px-6 py-3 border-2 border-japon-dore text-japon-dore font-sans font-medium
+           rounded-sm hover:bg-japon-dore hover:text-japon-noir transition-all duration-200;
+  }
+
+  /* Carte avec bordure rouge discrète */
+  .card-japon {
+    @apply bg-white rounded-sm shadow-md border-l-4 border-japon-rouge
+           p-6 hover:shadow-xl transition-shadow duration-300;
+  }
+
+  /* Badge de catégorie */
+  .badge-rouge {
+    @apply inline-block px-3 py-1 bg-japon-rouge text-white text-xs
+           font-sans font-medium rounded-full;
+  }
+
+  /* Trait horizontal décoratif rouge */
+  .divider-rouge {
+    @apply border-none h-0.5 bg-gradient-to-r from-japon-rouge via-japon-dore to-transparent my-6;
+  }
+
+  /* Titre de section avec ornement */
+  .titre-section {
+    @apply font-serif text-3xl md:text-4xl text-japon-noir relative inline-block;
+  }
+  .titre-section::after {
+    content: '';
+    @apply block h-1 bg-japon-rouge mt-2 w-16;
+  }
+
+  /* Fond texturé washi */
+  .bg-washi {
+    background-color: #FFF8F0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(214,40,40,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(212,175,55,0.04) 0%, transparent 50%);
+  }
+}
+
+/* =====================================================
+   TRANSITIONS DE ROUTE
+   ===================================================== */
+
+/* Fade entre les pages */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.35s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Slide latéral */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* =====================================================
+   ANIMATIONS SAKURA
+   ===================================================== */
+
+/* Pétale de sakura générique */
+.sakura-petal {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 9999;
+  user-select: none;
+  font-size: 1.2rem;
+  animation: sakuraFall linear infinite;
+}
+
+/* =====================================================
+   TYPOGRAPHIE JAPONAISE
+   ===================================================== */
+
+/* Caractère japonais décoratif en filigrane */
+.kanji-watermark {
+  @apply absolute text-japon-rouge opacity-5 font-serif select-none pointer-events-none;
+  font-size: clamp(6rem, 20vw, 16rem);
+  line-height: 1;
+}
+
+/* Prononciation romaji sous les caractères */
+.romaji {
+  @apply text-xs text-japon-gris font-sans mt-1 text-center;
+}
+
+/* Kana dans les tableaux */
+.kana-cell {
+  @apply flex flex-col items-center justify-center p-3 rounded cursor-pointer
+         border border-transparent hover:border-japon-rouge hover:bg-red-50
+         transition-all duration-200 select-none;
+}
+
+/* =====================================================
+   TIMELINE HISTOIRE
+   ===================================================== */
+
+.timeline-item::before {
+  content: '';
+  @apply absolute left-0 top-6 w-4 h-4 bg-japon-rouge rounded-full
+         border-4 border-japon-blanc shadow-md z-10;
+  transform: translateX(-50%);
+}
+
+/* =====================================================
+   RESPONSIVE — Ajustements mobiles
+   ===================================================== */
+
+@media (max-width: 640px) {
+  .titre-section {
+    @apply text-2xl;
+  }
+
+  .card-japon {
+    @apply p-4;
+  }
+}
